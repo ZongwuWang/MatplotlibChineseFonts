@@ -30,6 +30,12 @@ Step 1-3 can be combined with:
 wget -P "$(python3 -c "import os, matplotlib; print(os.path.dirname(matplotlib.matplotlib_fname()) + '/fonts/ttf')")" https://github.com/ZongwuWang/MatplotlibChineseFonts/raw/refs/heads/master/SimHei.ttf && python3 -c "import matplotlib; matplotlib.font_manager._rebuild()"
 ```
 
+For new matplotlib version, `_rebuild` is removed, we can use:
+
+```shell
+wget -P "$(python3 -c "import os, matplotlib; print(os.path.dirname(matplotlib.matplotlib_fname()) + '/fonts/ttf')")" https://github.com/ZongwuWang/MatplotlibChineseFonts/raw/refs/heads/master/SimHei.ttf && python3 -c "import matplotlib, shutil; shutil.rmtree(matplotlib.get_cachedir())"
+```
+
 4. Adjust font in your code.
 
 ```python
